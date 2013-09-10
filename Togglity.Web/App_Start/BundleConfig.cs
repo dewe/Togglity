@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Toggliatelle.Web
+namespace Togglity.Web
 {
     public class BundleConfig
     {

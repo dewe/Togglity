@@ -8,7 +8,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Nancy.Hosting.Self;
 
-namespace Toggliatelle.Web
+namespace Togglity.Web
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -25,10 +25,10 @@ namespace Toggliatelle.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            StartToggliatelle();
+            StartTogglity();
         }
 
-        private void StartToggliatelle()
+        private void StartTogglity()
         {
             // Create namespace reservations manually with the (elevated) command(s):
             // netsh http add urlacl url=http://+:1337/ user=Everyone"}

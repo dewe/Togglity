@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toggliatelle.Web", "Toggliatelle.Web\Toggliatelle.Web.csproj", "{3BC3E2A6-965F-415B-8FF0-0380C68F9399}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Togglity.Web", "Togglity.Web\Togglity.Web.csproj", "{3BC3E2A6-965F-415B-8FF0-0380C68F9399}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

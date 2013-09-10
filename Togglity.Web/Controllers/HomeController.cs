@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Toggliatelle.Web.Controllers
+namespace Togglity.Web.Controllers
 {
     public class HomeController : Controller
     {
