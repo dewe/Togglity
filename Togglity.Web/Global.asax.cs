@@ -36,8 +36,6 @@ namespace Togglity.Web
 
             nancyHost = new NancyHost(new Uri("http://localhost:1337"));
             nancyHost.Start();
-
-
         }
     }
 }

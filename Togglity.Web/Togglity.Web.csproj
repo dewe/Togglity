@@ -128,7 +128,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\Togglity\Api\ToggleModule.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -230,6 +229,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Togglity\Togglity.csproj">
+      <Project>{2e935878-ca31-450a-8ced-00718c05fcac}</Project>
+      <Name>Togglity</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
