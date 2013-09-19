@@ -7,21 +7,31 @@ namespace UnitTests
     [TestFixture]
     public class ToggleModuleSpecs
     {
+        private DefaultNancyBootstrapper _bootstrapper;
+        private Browser _browser;
+
+        [SetUp]
+        public void Setup()
+        {
+            _bootstrapper = new DefaultNancyBootstrapper();
+            _browser = new Browser(_bootstrapper);
+        }
+
         [Test]
         public void Should_return_status_ok_when_route_exists()
         {
-            // Given
-            var bootstrapper = new DefaultNancyBootstrapper();
-            var browser = new Browser(bootstrapper);
+            var result = _browser.Get("/", with => with.HttpRequest());
 
-            // When
-            var result = browser.Get("/", with =>
-            {
-                with.HttpRequest();
-            });
-
-            // Then
             Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
         }
+
+        [Test]
+        public void Should_return_json()
+        {
+            var result = _browser.Get("/", with => with.HttpRequest());
+
+            Assert.AreEqual("application/json; charset=utf-8", result.ContentType);
+        }
+
     }
 }
