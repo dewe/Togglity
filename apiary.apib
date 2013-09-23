@@ -1,0 +1,37 @@
+HOST: http://www.example.com
+
+--- Togglity API Blueprint v1 ---
+---
+Description TBD.
+---
+
+--
+Application Toggle Resources
+The following is a section of resources exposed by a togglified application. 
+--
+Lists toggles exposed by the application.
+GET /toggles
+< 200
+< Content-Type: application/json
+{ "toggles": [
+    { "myToggle": true, "url": "/toggles/myToggle" },
+    { "toggleB": false, "url": "/toggles/toggleB" },
+    { "toggleC": true, "url": "/toggles/toggleC" },
+] }
+
+Get a toggle.
+GET /toggles/{toggle}
+< 200
+< Content-Type: application/json
+{ "myToggle": true }
+
+Set a toggle.
+PUT /toggles/{toggle}
+> Content-Type: application/json
+{ "myToggle": false }
+< 201
+< Content-Type: application/json
+{ "status": "toggled", "url": "/toggles/myToggle" }
++++++
+< 404
+{ "No such toggle"  }
