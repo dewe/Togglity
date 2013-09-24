@@ -6,32 +6,42 @@ Description TBD.
 ---
 
 --
-Application Toggle Resources
+Application Feature Toggle Resources
 The following is a section of resources exposed by a togglified application. 
 --
-Lists toggles exposed by the application.
-GET /toggles
+Identify the application.
+GET /{application}
+< 200
+< Content-Type: application/json
+{ "application": "application name here" }
+
+Lists feature toggles exposed by the application.
+GET /{application}/toggles
 < 200
 < Content-Type: application/json
 { "toggles": [
-    { "myToggle": true, "url": "/toggles/myToggle" },
-    { "toggleB": false, "url": "/toggles/toggleB" },
-    { "toggleC": true, "url": "/toggles/toggleC" },
+    { "myfeature": true, "url": "/{application}/toggles/myfeature" },
+    { "featureX": false, "url": "/{application}/toggles/featureX" },
+    { "a_feature": true, "url": "/{application}/toggles/a_feature" },
 ] }
 
-Get a toggle.
-GET /toggles/{toggle}
+Get a feature toggle.
+GET /{application}/toggles/{feature}
 < 200
 < Content-Type: application/json
-{ "myToggle": true }
+{ "myfeature": true }
 
-Set a toggle.
-PUT /toggles/{toggle}
+Set a feature toggle.
+PUT /{application}/toggles/{feature}
 > Content-Type: application/json
-{ "myToggle": false }
+{ "myfeature": false }
+< 200
+< Content-Type: application/json
+{ "status": "updated", "url": "/toggles/myfeature" }
++++++
 < 201
 < Content-Type: application/json
-{ "status": "toggled", "url": "/toggles/myToggle" }
+{ "status": "created", "url": "/toggles/myfeature" }
 +++++
 < 404
 { "No such toggle"  }
