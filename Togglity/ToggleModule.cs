@@ -11,7 +11,7 @@ namespace Togglity
     {
         public ToggleModule()
         {
-            Get["/"] = _ => "Togglity root";
+            Get["/"] = _ => Response.AsJson("Togglity root");
         }
     }
 }
