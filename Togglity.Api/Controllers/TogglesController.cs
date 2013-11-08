@@ -20,9 +20,10 @@ namespace Togglity.Api.Controllers
         // POST toggles/webhook
         [HttpPost]
         [Route("toggles/webhook")]
-        public void WebHook([FromBody]string value)
+        public HttpResponseMessage WebHook([FromBody]string value)
         {
             _toggleService.GetToggles();
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }

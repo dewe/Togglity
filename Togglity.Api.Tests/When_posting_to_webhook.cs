@@ -28,5 +28,15 @@ namespace Togglity.Api.Tests
 
             A.CallTo(() => _togglesService.GetToggles()).MustHaveHappened();
         }
+
+        [Test]
+        public void It_should_return_status_ok()
+        {
+            var togglesController = new TogglesController(_togglesService);
+
+            var result = togglesController.WebHook("anystring");
+
+            result.StatusCode.ShouldBe(HttpStatusCode.OK);
+        }
     }
 }
