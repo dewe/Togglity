@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Togglity.Api.Services
 {
-    public interface ITogglesService
+    public interface IToggleCentral
     {
         IDictionary<string, bool> GetToggles();
     }
