@@ -10,7 +10,6 @@ using NUnit.Framework;
 using Shouldly;
 using Togglity.Api.Controllers;
 using Togglity.Api;
-using Togglity.Api.Models;
 using Togglity.Api.Services;
 
 namespace Togglity.Api.Tests
@@ -44,14 +43,5 @@ namespace Togglity.Api.Tests
                 () => _toggles.Set(null));
         }
 
-    }
-
-    public class FakeToggles : Toggles
-    {
-        public IDictionary<string, bool> InternalToggles
-        {
-            get { return _toggles; }
-            set { _toggles = value; }
-        }
     }
 }
