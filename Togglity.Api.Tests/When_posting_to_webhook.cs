@@ -20,14 +20,14 @@ namespace Togglity.Api.Tests
     {
         private Dictionary<string, bool> _toggleDictionary;
         private IToggleCentral _toggleCentral;
-        private IToggleAdmin _toggles;
+        private IToggles _toggles;
 
         [SetUp]
         public void SetUp()
         {
             _toggleDictionary = new Dictionary<string, bool>();
             _toggleCentral = A.Fake<IToggleCentral>();
-            _toggles = A.Fake<IToggleAdmin>();
+            _toggles = A.Fake<IToggles>();
 
             A.CallTo(() => _toggleCentral.GetToggles()).Returns(_toggleDictionary);
         }

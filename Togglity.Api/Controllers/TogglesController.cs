@@ -13,9 +13,9 @@ namespace Togglity.Api.Controllers
     public class TogglesController : ApiController
     {
         private readonly IToggleCentral _toggleCentral;
-        private readonly IToggleAdmin _toggles;
+        private readonly IToggles _toggles;
 
-        public TogglesController(IToggleCentral toggleCentral, IToggleAdmin toggles)
+        public TogglesController(IToggleCentral toggleCentral, IToggles toggles)
         {
             _toggleCentral = toggleCentral;
             _toggles = toggles;
