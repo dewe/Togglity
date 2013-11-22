@@ -20,13 +20,12 @@ namespace Togglity.Api.Models
 
         public void Set(IDictionary<string, bool> toggleDictionary)
         {
-            if (toggleDictionary == null) throw new ArgumentNullException("toggleDictionary");
             _toggles = toggleDictionary;
         }
 
-        public bool GetToggle(string name)
+        public bool this[string name]
         {
-            return _toggles[name];
+            get { return _toggles[name]; }
         }
     }
 

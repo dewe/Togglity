@@ -10,37 +10,23 @@ namespace Togglity.Api.Tests
     [TestFixture]
     public class When_updating_toggles
     {
-        private IDictionary<string, bool> _newToggleDictionary;
-        private Toggles _toggles;
+        private Toggles _toggles = new Toggles();
 
         [SetUp]
-        public void Given()
-        {
-            _toggles = new Toggles(A.Fake<IDictionary<string, bool>>());
-            _newToggleDictionary = new Dictionary<string, bool>
-            {
-                { "newtoggle", true }
-            };
-
-            When();
-        }
-
         public void When()
         {
-            _toggles.Set(_newToggleDictionary);
+            _toggles.Set(new Dictionary<string, bool>
+            {
+                { "newtoggle", true },
+                { "otherToggle", false }
+            });
         }
 
         [Test]
         public void New_toggles_should_be_available()
         {
-            _toggles.GetToggle("newtoggle").ShouldBe(true);
+            _toggles["newtoggle"].ShouldBe(true);
+            _toggles["otherToggle"].ShouldBe(false);
         }
-
-        [Test]
-        public void It_should_throw_if_updating_with_null()
-        {
-            Assert.Throws<ArgumentNullException>(
-                () => _toggles.Set(null));
-        }
-        }
+    }
 }
