@@ -1,65 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using FakeItEasy;
+﻿using FakeItEasy;
 using NUnit.Framework;
 using Shouldly;
+using System.Net;
 using Togglity.Api.Controllers;
-using Togglity.Api;
-using Togglity.Api.Models;
-using Togglity.Api.Services;
+using Togglity.Api.Tests.Context;
 
 namespace Togglity.Api.Tests
 {
     [TestFixture]
-    public class When_posting_to_webhook
+    public class When_posting_to_webhook : With_fake_toggles
     {
-        private Dictionary<string, bool> _toggleDictionary;
-        private IToggleCentral _toggleCentral;
-        private IToggles _toggles;
+        private TogglesController _togglesController;
 
-        [SetUp]
-        public void SetUp()
+        public override void Given()
         {
-            _toggleDictionary = new Dictionary<string, bool>();
-            _toggleCentral = A.Fake<IToggleCentral>();
-            _toggles = A.Fake<IToggles>();
+            _togglesController = new TogglesController(TogglesServer, Toggles);
+        }
 
-            A.CallTo(() => _toggleCentral.GetToggles()).Returns(_toggleDictionary);
+        public override void When()
+        {
+            _togglesController.WebHook("anystring");
         }
 
         [Test]
         public void It_should_get_toggles_from_server()
         {
-            var togglesController = new TogglesController(_toggleCentral, _toggles);
-
-            togglesController.WebHook("anystring");
-
-            A.CallTo(() => _toggleCentral.GetToggles()).MustHaveHappened();
+            A.CallTo(() => TogglesServer.GetToggles()).MustHaveHappened();
         }
 
         [Test]
         public void It_should_update_toggles()
         {
-            var togglesController = new TogglesController(_toggleCentral, _toggles);
-
-            togglesController.WebHook("anystring");
-
-            A.CallTo(() => _toggles.Set(_toggleDictionary)).MustHaveHappened();
+            A.CallTo(() => Toggles.Set(TogglesDictionary)).MustHaveHappened();
         }
 
         [Test]
         public void It_should_return_status_ok()
         {
-            var togglesController = new TogglesController(_toggleCentral, _toggles);
-
-            var result = togglesController.WebHook("anystring");
-
-            result.StatusCode.ShouldBe(HttpStatusCode.OK);
+            _togglesController.WebHook("anystring")
+                .StatusCode.ShouldBe(HttpStatusCode.OK);
         }
     }
 }

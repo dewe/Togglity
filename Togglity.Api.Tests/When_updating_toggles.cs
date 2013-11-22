@@ -1,47 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using FakeItEasy;
+﻿using FakeItEasy;
 using NUnit.Framework;
 using Shouldly;
-using Togglity.Api.Controllers;
-using Togglity.Api;
-using Togglity.Api.Services;
+using System;
+using System.Collections.Generic;
+using Togglity.Api.Models;
 
 namespace Togglity.Api.Tests
 {
     [TestFixture]
     public class When_updating_toggles
     {
-        private Dictionary<string, bool> _toggleDictionary;
-        private FakeToggles _toggles;
+        private IDictionary<string, bool> _newToggleDictionary;
+        private Toggles _toggles;
 
         [SetUp]
-        public void SetUp()
+        public void Given()
         {
-            _toggles = new FakeToggles { InternalToggles = A.Dummy<IDictionary<string, bool>>() };
+            _toggles = new Toggles(A.Fake<IDictionary<string, bool>>());
+            _newToggleDictionary = new Dictionary<string, bool>
+            {
+                { "newtoggle", true }
+            };
+
+            When();
+        }
+
+        public void When()
+        {
+            _toggles.Set(_newToggleDictionary);
         }
 
         [Test]
-        public void It_should_replace_all_toggles()
+        public void New_toggles_should_be_available()
         {
-            var newToggles = new Dictionary<string, bool> { { "newtoggle", true } };
-
-            _toggles.Set(newToggles);
-
-            _toggles.InternalToggles.ShouldBeSameAs(newToggles);
+            _toggles.GetToggle("newtoggle").ShouldBe(true);
         }
 
         [Test]
-        public void It_should_throw_on_null_toggles()
+        public void It_should_throw_if_updating_with_null()
         {
             Assert.Throws<ArgumentNullException>(
                 () => _toggles.Set(null));
         }
-
-    }
+        }
 }
