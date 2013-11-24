@@ -13,9 +13,9 @@ namespace Togglity.Api.Controllers
     public class TogglesController : ApiController
     {
         private readonly ITogglesServer _togglesServer;
-        private readonly IToggles _toggles;
+        private readonly ITogglesAdmin _toggles;
 
-        public TogglesController(ITogglesServer togglesServer, IToggles toggles)
+        public TogglesController(ITogglesServer togglesServer, ITogglesAdmin toggles)
         {
             _togglesServer = togglesServer;
             _toggles = toggles;
@@ -25,7 +25,7 @@ namespace Togglity.Api.Controllers
         [Route("toggles/webhook")]
         public HttpResponseMessage WebHook([FromBody]string value)
         {
-            _toggles.Set(_togglesServer.GetToggles());
+            _toggles.SetAllToggles(_togglesServer.GetToggles());
 
             return new HttpResponseMessage(HttpStatusCode.OK);
         }

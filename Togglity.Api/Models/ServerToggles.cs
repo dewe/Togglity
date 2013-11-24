@@ -4,7 +4,7 @@ using System.Dynamic;
 
 namespace Togglity.Api.Models
 {
-    public class ServerToggles : IToggles
+    public class ServerToggles : IToggles, ITogglesAdmin
     {
         private IDictionary<string, bool> _toggles;
 
@@ -15,17 +15,17 @@ namespace Togglity.Api.Models
 
         public ServerToggles(IDictionary<string,bool> toggles )
         {
-            Set(toggles);
+            SetAllToggles(toggles);
         }
 
-        public void Set(IDictionary<string, bool> toggleDictionary)
+        public void SetAllToggles(IDictionary<string, bool> toggleDictionary)
         {
             _toggles = toggleDictionary;
         }
 
-        public bool this[string name]
+        public bool GetToggle(string name)
         {
-            get { return _toggles[name]; }
+            return _toggles[name];
         }
     }
 

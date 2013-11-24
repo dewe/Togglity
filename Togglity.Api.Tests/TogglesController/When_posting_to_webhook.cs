@@ -2,18 +2,18 @@
 using FakeItEasy;
 using NUnit.Framework;
 using Shouldly;
-using Togglity.Api.Controllers;
+using Togglity.Api.Tests.Webhook;
 
-namespace Togglity.Api.Tests.Webhook
+namespace Togglity.Api.Tests.TogglesController
 {
     [TestFixture]
     public class When_posting_to_webhook : With_fake_toggles
     {
-        private TogglesController _togglesController;
+        private Controllers.TogglesController _togglesController;
 
         public override void Given()
         {
-            _togglesController = new TogglesController(TogglesServer, Toggles);
+            _togglesController = new Controllers.TogglesController(TogglesServer, TogglesAdmin);
         }
 
         public override void When()
@@ -30,7 +30,7 @@ namespace Togglity.Api.Tests.Webhook
         [Test]
         public void It_should_update_toggles()
         {
-            A.CallTo(() => Toggles.Set(TogglesDictionary)).MustHaveHappened();
+            A.CallTo(() => TogglesAdmin.SetAllToggles(TogglesDictionary)).MustHaveHappened();
         }
 
         [Test]

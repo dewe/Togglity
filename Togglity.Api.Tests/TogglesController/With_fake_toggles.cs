@@ -10,7 +10,7 @@ namespace Togglity.Api.Tests.Webhook
     {
         protected IDictionary<string, bool> TogglesDictionary;
         protected ITogglesServer TogglesServer;
-        public IToggles Toggles;
+        public ITogglesAdmin TogglesAdmin;
 
         [SetUp]
         public void Setup()
@@ -22,7 +22,7 @@ namespace Togglity.Api.Tests.Webhook
 
         private void Initialize()
         {
-            Toggles = A.Fake<IToggles>();
+            TogglesAdmin = A.Fake<ITogglesAdmin>();
             TogglesServer = A.Fake<ITogglesServer>();
             TogglesDictionary = A.Fake<IDictionary<string, bool>>();
             A.CallTo(() => TogglesServer.GetToggles()).Returns(TogglesDictionary);
