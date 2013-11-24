@@ -1,11 +1,10 @@
-﻿using FakeItEasy;
+﻿using System.Net;
+using FakeItEasy;
 using NUnit.Framework;
 using Shouldly;
-using System.Net;
 using Togglity.Api.Controllers;
-using Togglity.Api.Tests.Context;
 
-namespace Togglity.Api.Tests
+namespace Togglity.Api.Tests.Webhook
 {
     [TestFixture]
     public class When_posting_to_webhook : With_fake_toggles

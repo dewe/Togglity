@@ -4,16 +4,16 @@ using System.Dynamic;
 
 namespace Togglity.Api.Models
 {
-    public class Toggles : IToggles
+    public class ServerToggles : IToggles
     {
         private IDictionary<string, bool> _toggles;
 
-        public Toggles()
+        public ServerToggles()
         {
             _toggles = new Dictionary<string, bool>();
         }
 
-        public Toggles(IDictionary<string,bool> toggles )
+        public ServerToggles(IDictionary<string,bool> toggles )
         {
             Set(toggles);
         }

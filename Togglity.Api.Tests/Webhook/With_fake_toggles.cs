@@ -4,7 +4,7 @@ using NUnit.Framework;
 using Togglity.Api.Models;
 using Togglity.Api.Services;
 
-namespace Togglity.Api.Tests.Context
+namespace Togglity.Api.Tests.Webhook
 {
     public abstract class With_fake_toggles
     {

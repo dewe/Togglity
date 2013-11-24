@@ -1,16 +1,14 @@
-﻿using FakeItEasy;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
-using System;
-using System.Collections.Generic;
 using Togglity.Api.Models;
 
-namespace Togglity.Api.Tests
+namespace Togglity.Api.Tests.Toggles
 {
     [TestFixture]
     public class When_updating_toggles
     {
-        private Toggles _toggles = new Toggles();
+        private ServerToggles _toggles = new ServerToggles();
 
         [SetUp]
         public void When()
