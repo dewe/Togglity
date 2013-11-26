@@ -148,7 +148,7 @@
     <Compile Include="Models\ServerToggles.cs" />
     <Compile Include="Models\FalseToggles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ITogglesServer.cs" />
+    <Compile Include="Services\ITogglesService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

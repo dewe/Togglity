@@ -1,8 +1,10 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using FakeItEasy;
 using NUnit.Framework;
 using Shouldly;
-using Togglity.Api.Tests.Webhook;
+using Togglity.Api.Models;
+using Togglity.Api.Services;
 
 namespace Togglity.Api.Tests.TogglesController
 {
@@ -10,10 +12,14 @@ namespace Togglity.Api.Tests.TogglesController
     public class When_posting_to_webhook : With_fake_toggles
     {
         private Controllers.TogglesController _togglesController;
+        private ITogglesService _service;
+        private ITogglesAdmin _toggles;
 
         public override void Given()
         {
-            _togglesController = new Controllers.TogglesController(TogglesServer, TogglesAdmin);
+            _service = GetAMockedMockTogglesServer();
+            _toggles = A.Fake<ITogglesAdmin>();
+            _togglesController = new Controllers.TogglesController(_service, _toggles);
         }
 
         public override void When()
@@ -24,13 +30,13 @@ namespace Togglity.Api.Tests.TogglesController
         [Test]
         public void It_should_get_toggles_from_server()
         {
-            A.CallTo(() => TogglesServer.GetToggles()).MustHaveHappened();
+            A.CallTo(() => _service.GetToggles()).MustHaveHappened();
         }
 
         [Test]
         public void It_should_update_toggles()
         {
-            A.CallTo(() => TogglesAdmin.SetAllToggles(TogglesDictionary)).MustHaveHappened();
+            A.CallTo(() => _toggles.SetAllToggles(A<IDictionary<string, bool>>.Ignored)).MustHaveHappened();
         }
 
         [Test]

@@ -1,31 +1,25 @@
 ﻿using System.Collections.Generic;
 using FakeItEasy;
 using NUnit.Framework;
-using Togglity.Api.Models;
 using Togglity.Api.Services;
 
-namespace Togglity.Api.Tests.Webhook
+namespace Togglity.Api.Tests.TogglesController
 {
     public abstract class With_fake_toggles
     {
-        protected IDictionary<string, bool> TogglesDictionary;
-        protected ITogglesServer TogglesServer;
-        public ITogglesAdmin TogglesAdmin;
-
         [SetUp]
         public void Setup()
         {
-            Initialize();
             Given();
             When();
         }
 
-        private void Initialize()
+        public ITogglesService GetAMockedMockTogglesServer()
         {
-            TogglesAdmin = A.Fake<ITogglesAdmin>();
-            TogglesServer = A.Fake<ITogglesServer>();
-            TogglesDictionary = A.Fake<IDictionary<string, bool>>();
-            A.CallTo(() => TogglesServer.GetToggles()).Returns(TogglesDictionary);
+            var togglesServer = A.Fake<ITogglesService>();
+            A.CallTo(() => togglesServer.GetToggles())
+                .Returns(A.Fake<IDictionary<string, bool>>());
+            return togglesServer;
         }
 
         public virtual void Given()

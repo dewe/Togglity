@@ -60,11 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ToggleApi\When_updating_toggle_instance.cs" />
+    <Compile Include="ToggleApi\When_updating_static_toggle_instance.cs" />
     <Compile Include="TogglesController\With_fake_toggles.cs" />
     <Compile Include="TogglesController\When_posting_to_webhook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToggleApi\When_creating_new_toggles.cs" />
+    <Compile Include="ToggleApi\When_creating_a_new_toggles_instance.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
