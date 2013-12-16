@@ -19,11 +19,11 @@ Lists feature toggles exposed by the application.
 GET /{application}/toggles
 < 200
 < Content-Type: application/json
-{ "toggles": [
-    { "myfeature": true, "url": "/{application}/toggles/myfeature" },
-    { "featureX": false, "url": "/{application}/toggles/featureX" },
-    { "a_feature": true, "url": "/{application}/toggles/a_feature" },
-] }
+{
+  "myfeature": false,
+  "featureX": true,
+  "a_feature": false
+}
 
 Get a feature toggle.
 GET /{application}/toggles/{feature}
