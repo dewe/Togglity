@@ -5,7 +5,7 @@ namespace Togglity.Server.Models
 {
     public class Toggles : IEnumerable<Feature>
     {
-        private readonly List<Feature> _features = new List<Feature>();  
+        private readonly List<Feature> _features = new List<Feature>();
 
         public IEnumerator<Feature> GetEnumerator()
         {

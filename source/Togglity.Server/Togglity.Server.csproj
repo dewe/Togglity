@@ -131,6 +131,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\JsonContentNegotiator.cs" />
     <Compile Include="Models\Feature.cs" />
     <Compile Include="Models\Toggles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
