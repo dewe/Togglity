@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using Togglity.Server.Models;
 
 namespace Togglity.Server.Controllers
 {
     public class TogglesController : ApiController
     {
         // GET api/toggles
-        public Toggles Get()
+        public IDictionary<string,bool> Get()
         {
-            return new Toggles()
+            return new Dictionary<string, bool>()
             {
-                new Feature {Name = "Toggle1", Enabled = true},
-                new Feature {Name = "Toggle2", Enabled = true},
-                new Feature {Name = "Toggle3", Enabled = false}
+                {"Toggle1", true},
+                {"Toggle2", true},
+                {"Toggle3", false}
             };
         }
     }
