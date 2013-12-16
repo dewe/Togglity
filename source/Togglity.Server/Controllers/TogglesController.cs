@@ -9,7 +9,7 @@ namespace Togglity.Server.Controllers
         // GET api/toggles
         public Toggles Get()
         {
-            return new Toggles() 
+            return new Toggles()
             {
                 new Feature {Name = "Toggle1", Enabled = true},
                 new Feature {Name = "Toggle2", Enabled = true},

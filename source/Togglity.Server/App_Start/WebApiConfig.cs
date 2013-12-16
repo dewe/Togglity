@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
+using System.Web.Helpers;
 using System.Web.Http;
+using Newtonsoft.Json.Serialization;
 
 namespace Togglity.Server
 {
@@ -26,8 +28,9 @@ namespace Togglity.Server
         private static void ConfigureJsonOnlyContentNegotion(HttpConfiguration config)
         {
             var jsonFormatter = new JsonMediaTypeFormatter();
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             jsonFormatter.Indent = true;
-            
+
             config.Services.Replace(
                 typeof (IContentNegotiator), 
                 new JsonContentNegotiator(jsonFormatter));
